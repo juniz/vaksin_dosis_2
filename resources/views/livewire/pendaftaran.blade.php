@@ -66,30 +66,24 @@
             @endif
         </div>
 
-        {{-- <div class="form-group">
-            <label for="captcha">Captcha</label>
-              {!! NoCaptcha::renderJs() !!}
-              {!! NoCaptcha::display() !!}
-              @error('g-recaptcha-response')
-                  <div class="mt-1 mb-1 alert alert-danger">{{ $message }}</div>
-              @enderror
-          </div> --}}
+        <x-honey recaptcha/>
 
         <div class='flex items-center justify-center gap-4 pt-5 pb-5 md:gap-8'>
             <a href="{{ route('/') }}" class='w-auto px-4 py-2 font-medium text-white bg-gray-500 rounded-lg shadow-xl hover:bg-gray-700'>Kembali</a>
-            <button type="submit"
+            <button type="submit" class="w-auto px-4 py-2 font-medium text-white bg-purple-500 rounded-lg shadow-xl g-recaptcha hover:bg-purple-700">Daftar</button>
+            {{-- <button type="submit"
               data-sitekey="{{env('CAPTCHA_SITE_KEY')}}"
               data-callback='handle'
               data-action='submit'
                class="w-auto px-4 py-2 font-medium text-white bg-purple-500 rounded-lg shadow-xl g-recaptcha hover:bg-purple-700">
                Daftar
-            </button>
+            </button> --}}
         </div>
 
     </div>
   </div>
 </form>
-<script src="https://www.google.com/recaptcha/api.js?render={{env('CAPTCHA_SITE_KEY')}}"></script>
+{{-- <script src="https://www.google.com/recaptcha/api.js?render={{env('CAPTCHA_SITE_KEY')}}"></script>
 <script>
     function handle() {
         grecaptcha.ready(function () {
@@ -99,6 +93,6 @@
                 });
         })
     }
-</script>
+</script> --}}
 
 

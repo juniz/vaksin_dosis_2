@@ -11,12 +11,21 @@ class HalamanUtama extends Component
     public $hp;
     public $tglLahir;
     public $tglDosis2;
+    public $sttsValidasi;
     public $cekModal = 0;
 
     protected $rules = [
         'nik' => 'required|min:16|max:16',
         'tglLahir' => 'date',
     ];
+
+    protected $messages = [
+        'nik.required' => 'NIK tidak boleh kosong',
+        'nik.min:16' => 'NIK tidak boleh kurang dari 16 digit',
+        'nik.max:16' => 'NIK tidak boleh lebih dari 16 digit',
+        'tglLahir.date' => 'Tanggal lahir harus harus berupa tanggal',
+    ];
+
 
     public function openModal()
     {
@@ -37,6 +46,7 @@ class HalamanUtama extends Component
             $this->nama = $peserta->nama;
             $this->hp = $peserta->telp;
             $this->tglDosis2 = $peserta->tgl_dosis_2;
+            $this->sttsValidasi = $peserta->status;
             $this->openModal();
         }else{
             session()->flash('danger', 'NIK dengan no '.$this->nik.' belum terdaftar vaksin dosis 2 RS Bhayangkara Nganjuk.');

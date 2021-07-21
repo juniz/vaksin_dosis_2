@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 use Livewire\WithFileUploads;
+use Lukeraymonddowning\Honey\Traits\WithRecaptcha;
 use Livewire\Component;
 use App\Models\Peserta;
 use App\Models\TglKegiatan;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Http;
 class Pendaftaran extends Component
 {
     use WithFileUploads;
-
+    use WithRecaptcha;
     public $nik;
     public $nama;
     public $hp;
@@ -50,18 +51,18 @@ class Pendaftaran extends Component
         'file.max:1024' => 'Kartu vaksin harus berukuran kurang dari 1 mb',
     ];
 
-    public function updatedCaptcha($token)
-    {
-        $response = Http::post('https://www.google.com/recaptcha/api/siteverify?secret=' . env('CAPTCHA_SECRET_KEY') . '&response=' . $token);
-        $this->captcha = $response->json()['score'];
-        //dd($token);
+    // public function updatedCaptcha($token)
+    // {
+    //     $response = Http::post('https://www.google.com/recaptcha/api/siteverify?secret=' . env('CAPTCHA_SECRET_KEY') . '&response=' . $token);
+    //     $this->captcha = $response->json()['score'];
+    //     //dd($token);
 
-        if ($this->captcha > .3) {
-            $this->submit();
-        } else {
-            return session()->flash('danger', 'Google thinks you are a bot, please refresh and try again');
-        }
-    }
+    //     if ($this->captcha > .3) {
+    //         $this->submit();
+    //     } else {
+    //         return session()->flash('danger', 'Google thinks you are a bot, please refresh and try again');
+    //     }
+    // }
 
     public function submit()
     {

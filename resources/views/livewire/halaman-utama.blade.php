@@ -38,7 +38,13 @@
                         <div class="items-center w-20">:</div>
                         <div class="items-start w-1/2">{{Carbon\Carbon::parse($tglDosis2)->format('d-m-Y')}}</div>
                     </div>
+                    <div class="flex flex-row">
+                        <div class="items-start w-1/2">Status Validasi</div>
+                        <div class="items-center w-20">:</div>
+                        <div class="items-start w-1/2">{{$sttsValidasi == 0 ? 'Belum Disetujui' : 'Disetujui'}}</div>
+                    </div>
                 </div>
+                <div class="py-5 text-center">Silahkan rekam layar ini untuk bukti pendaftaran</div>
             </div>
             <hr>
             <div class="ml-auto">
@@ -83,15 +89,6 @@
                 <x-error field="tglLahir" class="text-red-500" />
             </div>
 
-
-            {{-- <div class="form-group">
-                <label for="captcha">Captcha</label>
-                  {!! NoCaptcha::renderJs() !!}
-                  {!! NoCaptcha::display() !!}
-                  @error('g-recaptcha-response')
-                      <div class="mt-1 mb-1 alert alert-danger">{{ $message }}</div>
-                  @enderror
-              </div> --}}
 
             <div class='flex items-center justify-center gap-4 pt-5 pb-5 md:gap-8'>
                 <button wire:click = 'submit' class='w-auto px-4 py-2 font-medium text-white bg-blue-500 rounded-lg shadow-xl hover:bg-blue-700'>Cek</button>
